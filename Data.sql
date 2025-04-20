@@ -5,7 +5,7 @@ VALUES  ('LP40', N'Phòng 4 người Nữ', 0, 4),
 		('LP60', N'Phòng 6 người Nữ', 0, 6),
 		('LP61', N'Phòng 6 người Nam', 1, 6),
 		('LP80', N'Phòng 8 người Nữ', 0, 8),
-		('LP81', N'Phòng 8 người Nam', 1, 8),
+		('LP81', N'Phòng 8 người Nam', 1, 8);
 
 -- Thêm dữ liệu vào tPhong
 INSERT INTO tPhong (MaPhong, TenPhong, MaLoaiPhong)
@@ -51,7 +51,7 @@ VALUES  ('A1P01', N'P101', 'LP40'),
 		('A4P35', N'P201', 'LP41'),
 		('A4P36', N'P202', 'LP41'),
 		('A4P37', N'P203', 'LP41'),
-		('A4P38', N'P204', 'LP41'),
+		('A4P38', N'P204', 'LP41');
 
 INSERT INTO tSinhVien (MaSV, HoTen, NgaySinh, GioiTinh, SDT)
 VALUES  ('213617746', N'Hồ Ngọc Long', '2003-10-13', '1', '0821706513'),
@@ -154,28 +154,32 @@ VALUES  ('213617746', N'Hồ Ngọc Long', '2003-10-13', '1', '0821706513'),
 		('242611945', N'Đặng Tiến Hoàng', '2006-12-20', '1', '0529407691'),
 		('202616657', N'Nguyễn Thị Mai', '2002-02-16', '0', '0795608183'),
 		('200555057', N'Nguyễn Thị Trà My', '2002-11-12', '0', '0853546153'),
-		('231541036', N'Hồ Gia Trang', '2005-11-10', '0', '0861940002'),
+		('231541036', N'Hồ Gia Trang', '2005-11-10', '0', '0861940002');
 
 
 
 INSERT INTO tNhanVien (MaNV, HoTen, NgaySinh, GioiTinh, ChucVu)
-VALUES  ('NV002', N'Trần Thị Mai', '1995-03-22', 0, N'Trưởng ban quản lý'),
-		('NV003', N'Phan Đức Bội', '1973-11-30', 1, N'Quản lý'),
-		('NV005', N'Mai Đức Anh', '1980-09-10', 1, N'Phó ban quản lý'),
-		('NV009', N'Ngô Quốc Huy', '1983-04-20', 1, N'Bảo vệ'),
-		('NV010', N'Đặng Thị Thảo', '1998-06-11', 0, N'Nhân viên'),
-		('NV011', N'Trương Văn Long', '1981-10-25', 1, N'Trưởng ban kế toán'),
-		('NV013', N'Phan Văn Đức', '1989-03-03', 1, N'Nhân viên'),
-		('NV014', N'Hà Thị Minh', '1996-07-27', 0, N'Nhân viên'),
-		('NV015', N'Đinh Văn Khoa', '1985-05-12', 1, N'Phó ban bảo vệ'),
-		('NV016', N'Nguyễn Thị Linh', '1991-09-18', 0, N'Bảo vệ'),
-		('NV017', N'Trần Văn Bình', '1980-11-22', 1, N'Phó ban kế toán'),
-		('NV018', N'Lê Thị Hồng', '1993-02-14', 0, N'Bảo vệ'),
-		('NV019', N'Phạm Văn Dũng', '1988-06-30', 1, N'Nhân viên'),
-		('NV021', N'Hoàng Văn Tuấn', '1987-08-19', 1, N'Bảo vệ'),
-		('NV023', N'Ngô Văn Quang', '1982-12-28', 1, N'Bảo vệ'),
-		('NV024', N'Đỗ Thị Trang', '1990-03-15', 0, N'Nhân viên'),
-		('NV026', N'Lý Thị Ngọc', '1997-05-23', 0, N'Bảo vệ'),
-		('NV028', N'Hà Thị Lan', '1992-11-12', 0, N'Nhân viên'),
-		('NV029', N'Đinh Văn Tùng', '1981-02-26', 1, N'Trưởng ban bảo vệ'),
-		('NV030', N'Nguyễn Thị Hiền', '1998-07-20', 0, N'Kế toán');
+VALUES  ('QL001', N'Phan Đức Bội', '1973-11-30', 1, N'Trưởng ban quản lý'),
+		('QL002', N'Mai Đức Anh', '1980-09-10', 1, N'Phó ban quản lý'),
+		('KT001', N'Trương Văn Long', '1981-10-25', 1, N'Trưởng ban kế toán'),
+		('KT002', N'Trần Văn Bình', '1980-11-22', 1, N'Phó ban kế toán'),
+		('BV001', N'Đinh Văn Tùng', '1981-02-26', 1, N'Trưởng ban bảo vệ'),
+		('BV002', N'Đinh Văn Khoa', '1985-05-12', 1, N'Phó ban bảo vệ'),
+
+		('NV001', N'Nguyễn Thị Hiền', '1998-07-20', 0, N'Nhân viên');
+		('NV002', N'Trần Thị Mai', '1995-03-22', 0, N'Nhân viên'),
+		('NV003', N'Đặng Thị Thảo', '1998-06-11', 0, N'Nhân viên'),
+		('NV004', N'Phan Văn Đức', '1989-03-03', 1, N'Nhân viên'),
+		('NV005', N'Hà Thị Minh', '1996-07-27', 0, N'Nhân viên'),
+		('NV006', N'Phạm Văn Dũng', '1988-06-30', 1, N'Nhân viên'),
+		('NV007', N'Hà Thị Lan', '1992-11-12', 0, N'Nhân viên'),
+		('NV008', N'Đỗ Thị Trang', '1990-03-15', 0, N'Nhân viên'),
+		
+		('BV001', N'Ngô Quốc Huy', '1983-04-20', 1, N'Bảo vệ'),
+		('BV002', N'Nguyễn Thị Linh', '1991-09-18', 0, N'Bảo vệ'),
+		('BV003', N'Lê Thị Hồng', '1993-02-14', 0, N'Bảo vệ'),
+		('BV004', N'Hoàng Văn Tuấn', '1987-08-19', 1, N'Bảo vệ'),
+		('BV005', N'Ngô Văn Quang', '1982-12-28', 1, N'Bảo vệ'),
+		('BV006', N'Lý Thị Ngọc', '1997-05-23', 0, N'Bảo vệ');
+		
+		
