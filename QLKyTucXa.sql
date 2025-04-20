@@ -120,13 +120,15 @@ CREATE TABLE tPBTDienNuoc (
 
 -- Tạo bảng tCTPBTDienNuoc
 CREATE TABLE tCTPBTDienNuoc (
-    MaPB NVARCHAR(10),                   -- Mã phiếu thanh toán
-    MaCongTo NVARCHAR(10),               -- Mã công tơ
-    ThangGhiSo DATE,                     -- Tháng ghi số điện nước
-    ChiSo INT,                           -- Chỉ số công tơ
-    DonGia DECIMAL(18, 2),               -- Đơn giá điện, nước
-    ThanhTien DECIMAL(18, 2),            -- Thành tiền (chi phí điện nước)
+    MaPB NVARCHAR(10),                   
+    MaCongTo NVARCHAR(10),               
+    ThangGhiSo DATE,                     
+    ChiSo INT,                           
+    DonGia DECIMAL(18, 2),               
+    ThanhTien DECIMAL(18, 2),           
 
-    PRIMARY KEY (MaPB, MaCongTo, ThangGhiSo),  -- Khóa chính kết hợp
-    FOREIGN KEY (MaPB) REFERENCES tPBTDienNuoc(MaPT) -- Liên kết đến bảng tPBTDienNuoc
-)
+    PRIMARY KEY (MaPB, MaCongTo, ThangGhiSo),  
+
+    FOREIGN KEY (MaPB) REFERENCES tPBTDienNuoc(MaPT),
+    FOREIGN KEY (MaCongTo, ThangGhiSo) REFERENCES tDienNuoc(MaCongTo, ThangGhiSo)
+);
