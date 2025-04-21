@@ -1,134 +1,122 @@
-﻿-- Tạo một Database QLKyTucXa mới
-CREATE DATABASE QLKyTucXa
-
--- Sử dụng Database QLKyTucXa
-USE QLKyTucXa
-
--- Tạo bảng tSinhVien
+﻿-- tSinhVien: OK
 CREATE TABLE tSinhVien (
-    MaSV NVARCHAR(10) PRIMARY KEY,    -- 10 ký tự, VD: 231230791, là mã sinh viên (khóa chính)
-    HoTen NVARCHAR(100) NOT NULL,     -- Họ tên sinh viên, không được phép NULL
-    NgaySinh DATE,                    -- Ngày sinh sinh viên
-    GioiTinh BIT,                     -- 0 = Nữ ; 1 = Nam, lưu trữ giới tính dưới dạng bit
-    SDT VARCHAR(10)                   -- Số điện thoại sinh viên, sử dụng VARCHAR để linh động hơn CHAR
-)
+    MaSV NVARCHAR(10) PRIMARY KEY,  
+    HoTen NVARCHAR(100) NOT NULL,     
+    NgaySinh DATE NULL,             
+    GioiTinh BIT NULL,               
+    SDT VARCHAR(10) NULL            
+);
 
--- Tạo bảng tNhanVien
+-- tNhanVien: OK
 CREATE TABLE tNhanVien (
-    MaNV NVARCHAR(10) PRIMARY KEY,    -- 10 ký tự, VD: NV001, là mã nhân viên (khóa chính)
-    HoTen NVARCHAR(100) NOT NULL,     -- Họ tên nhân viên, không được phép NULL
-    NgaySinh DATE,                    -- Ngày sinh nhân viên
-    GioiTinh BIT,                     -- 0 = Nữ ; 1 = Nam, lưu trữ giới tính dưới dạng bit
-    ChucVu NVARCHAR(100)              -- Chức vụ của nhân viên
-)
+    MaNV NVARCHAR(10) PRIMARY KEY,    
+    HoTen NVARCHAR(100) NOT NULL,    
+    NgaySinh DATE NULL,              
+    GioiTinh BIT NULL,              
+    ChucVu NVARCHAR(100) NULL       
+);
 
--- Tạo bảng tPTTThuePhong
+-- tPTTThuePhong
 CREATE TABLE tPTTThuePhong (
-    MaPT NVARCHAR(10) PRIMARY KEY,    -- Mã phiếu thanh toán thuê phòng (khóa chính)
-    MaNV NVARCHAR(10) NOT NULL,       -- Mã nhân viên lập phiếu
-    MASV NVARCHAR(10) NOT NULL,       -- Mã sinh viên thuê phòng
-    NgayLapPhieu DATE,                -- Ngày lập phiếu thanh toán
-    TongTien DECIMAL(18, 2),          -- Tổng tiền thanh toán, định dạng số thực với 2 chữ số thập phân
-    TrangThai BIT DEFAULT 0,          -- Trạng thái thanh toán: 0 = chưa thanh toán, 1 = đã thanh toán
+    MaPT NVARCHAR(10) PRIMARY KEY,
+    MaNV NVARCHAR(10) NOT NULL,
+    MASV NVARCHAR(10) NOT NULL,
+    NgayLapPhieu DATE NULL,
+    TongTien DECIMAL(18, 2) NULL,   
+    TrangThai BIT DEFAULT 0,
 
-    -- Khóa ngoại
-    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),   -- Liên kết đến bảng tNhanVien
-    FOREIGN KEY (MASV) REFERENCES tSinhVien(MaSV)    -- Liên kết đến bảng tSinhVien
-)
+    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),
+    FOREIGN KEY (MASV) REFERENCES tSinhVien(MaSV)
+);
 
--- Tạo bảng tLoaiPhong
+-- tLoaiPhong: OK
 CREATE TABLE tLoaiPhong (
-    MaLoaiPhong NVARCHAR(10) PRIMARY KEY,  -- Mã loại phòng (khóa chính)
-    TenLoaiPhong NVARCHAR(100) NOT NULL,   -- Tên loại phòng
-    Nam_Nu BIT,                            -- 0 = Nữ ; 1 = Nam, chỉ định loại phòng theo giới tính
-    SoNguoi INT                            -- Số người tối đa trong phòng
-)
+    MaLoaiPhong NVARCHAR(10) PRIMARY KEY,
+    TenLoaiPhong NVARCHAR(100) NOT NULL,
+    Nam_Nu BIT NULL,
+    SoNguoi INT NULL
+);
 
--- Tạo bảng tPhong
+-- tPhong: OK
 CREATE TABLE tPhong (
-    MaPhong NVARCHAR(10) PRIMARY KEY,      -- Mã phòng (khóa chính)
-    TenPhong NVARCHAR(100) NOT NULL,      -- Tên phòng
-    MaLoaiPhong NVARCHAR(10),             -- Mã loại phòng, liên kết với bảng tLoaiPhong
+    MaPhong NVARCHAR(10) PRIMARY KEY,
+    TenPhong NVARCHAR(100) NOT NULL,
+    MaLoaiPhong NVARCHAR(10) NULL,
 
-    -- Khóa ngoại
-    FOREIGN KEY (MaLoaiPhong) REFERENCES tLoaiPhong(MaLoaiPhong)  -- Liên kết đến bảng tLoaiPhong
-)
+    FOREIGN KEY (MaLoaiPhong) REFERENCES tLoaiPhong(MaLoaiPhong)
+);
 
--- Tạo bảng tHopDong
+-- tHopDong
 CREATE TABLE tHopDong (
-    MaHD NVARCHAR(10) PRIMARY KEY,        -- Mã hợp đồng (khóa chính)
-    MaNV NVARCHAR(10) NOT NULL,           -- Mã nhân viên lập hợp đồng
-    MaSV NVARCHAR(10) NOT NULL,           -- Mã sinh viên ký hợp đồng
-    MaPhong NVARCHAR(10) NOT NULL,        -- Mã phòng thuê
-    NgayBatDau DATE,                      -- Ngày bắt đầu hợp đồng
-    NgayKetThuc DATE,                     -- Ngày kết thúc hợp đồng
+    MaHD NVARCHAR(10) PRIMARY KEY,
+    MaNV NVARCHAR(10) NOT NULL,
+    MaSV NVARCHAR(10) NOT NULL,
+    MaPhong NVARCHAR(10) NOT NULL,
+    NgayBatDau DATE NULL,
+    NgayKetThuc DATE NULL,
 
-    -- Khóa ngoại
-    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),   -- Liên kết đến bảng tNhanVien
-    FOREIGN KEY (MaSV) REFERENCES tSinhVien(MaSV),   -- Liên kết đến bảng tSinhVien
-    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong) -- Liên kết đến bảng tPhong
-)
+    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),
+    FOREIGN KEY (MaSV) REFERENCES tSinhVien(MaSV),
+    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong)
+);
 
--- Tạo bảng tPBTThuePhong
+-- tPBTThuePhong
 CREATE TABLE tPBTThuePhong (
-    MaPB NVARCHAR(10) PRIMARY KEY,        -- Mã phiếu thanh toán thuê phòng (khóa chính)
-    MaHD NVARCHAR(10) NOT NULL,           -- Mã hợp đồng liên kết với hợp đồng thuê
-    TongTien DECIMAL(18, 2) NOT NULL,     -- Tổng tiền thanh toán cho hợp đồng
-    NgayLapPhieu DATE NOT NULL,           -- Ngày lập phiếu thanh toán
-    HanThanhToan DATE NOT NULL,           -- Ngày hết hạn thanh toán
-    TrangThai BIT,                        -- Trạng thái thanh toán: 0 = chưa thanh toán, 1 = đã thanh toán
+    MaPB NVARCHAR(10) PRIMARY KEY,
+    MaHD NVARCHAR(10) NOT NULL,
+    NgayLapPhieu DATE NULL,
+    HanThanhToan DATE NULL,
+	TongTien DECIMAL(18, 2) NULL,
+    TrangThai BIT NULL,
 
-    -- Khóa ngoại
-    FOREIGN KEY (MaHD) REFERENCES tHopDong(MaHD)  -- Liên kết đến bảng tHopDong
-)
+    FOREIGN KEY (MaHD) REFERENCES tHopDong(MaHD)
+);
 
--- Tạo bảng tDienNuoc
+-- tDienNuoc
 CREATE TABLE tDienNuoc (
-    MaCongTo NVARCHAR(10),                -- Mã công tơ
-    ThangGhiSo DATE,                      -- Tháng ghi số điện, nước
-    MaPhong NVARCHAR(10),                 -- Mã phòng liên kết với bảng tPhong
-    ChiSoDau INT,                         -- Chỉ số công tơ đầu kỳ
-    ChiSoCuoi INT,                        -- Chỉ số công tơ cuối kỳ
+    MaCongTo NVARCHAR(10),
+    ThangGhiSo DATE,
+    MaPhong NVARCHAR(10) NULL,
+    ChiSoDau INT NULL,
+    ChiSoCuoi INT NULL,
 
-    PRIMARY KEY (MaCongTo, ThangGhiSo),   -- Khóa chính kết hợp (Mã công tơ + Tháng ghi số)
-    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong) -- Liên kết đến bảng tPhong
-)
+    PRIMARY KEY (MaCongTo, ThangGhiSo),
+    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong)
+);
 
--- Tạo bảng tPTTDienNuoc
+-- tPTTDienNuoc
 CREATE TABLE tPTTDienNuoc (
-    MaPT NVARCHAR(10) PRIMARY KEY,        -- Mã phiếu thanh toán điện nước (khóa chính)
-    MaNV NVARCHAR(10) NOT NULL,           -- Mã nhân viên lập phiếu
-    MaPhong NVARCHAR(10) NOT NULL,        -- Mã phòng liên kết với bảng tPhong
-    NgayLapPhieu DATE NOT NULL,           -- Ngày lập phiếu
-    HanThanhToan DATE NOT NULL,           -- Ngày hết hạn thanh toán
-    TongTien DECIMAL(18, 2) NOT NULL,     -- Tổng tiền thanh toán
-    TrangThai BIT NOT NULL,               -- Trạng thái thanh toán: 0 = chưa thanh toán, 1 = đã thanh toán
+    MaPT NVARCHAR(10) PRIMARY KEY,
+    MaNV NVARCHAR(10) NOT NULL,
+    MaPhong NVARCHAR(10) NOT NULL,
+    NgayLapPhieu DATE NULL,
+    HanThanhToan DATE NULL,
+    TongTien DECIMAL(18, 2) NULL,
+    TrangThai BIT NULL,
 
-    -- Khóa ngoại
-    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),   -- Liên kết đến bảng tNhanVien
-    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong) -- Liên kết đến bảng tPhong
-)
+    FOREIGN KEY (MaNV) REFERENCES tNhanVien(MaNV),
+    FOREIGN KEY (MaPhong) REFERENCES tPhong(MaPhong)
+);
 
--- Tạo bảng tPBTDienNuoc
+-- tPBTDienNuoc
 CREATE TABLE tPBTDienNuoc (
-    MaPT NVARCHAR(10) PRIMARY KEY,        -- Mã phiếu thanh toán điện nước (khóa chính)
-    NgayLapPhieu DATE NOT NULL,           -- Ngày lập phiếu
-    HanThanhToan DATE NOT NULL,           -- Ngày hết hạn thanh toán
-    TongTien DECIMAL(18, 2) NOT NULL,     -- Tổng tiền thanh toán
-    TrangThai BIT NOT NULL                -- Trạng thái thanh toán: 0 = chưa thanh toán, 1 = đã thanh toán
-)
+    MaPT NVARCHAR(10) PRIMARY KEY,
+    NgayLapPhieu DATE NULL,
+    HanThanhToan DATE NULL,
+    TongTien DECIMAL(18, 2) NULL,
+    TrangThai BIT NULL
+);
 
--- Tạo bảng tCTPBTDienNuoc
+-- tCTPBTDienNuoc
 CREATE TABLE tCTPBTDienNuoc (
-    MaPB NVARCHAR(10),                   
-    MaCongTo NVARCHAR(10),               
-    ThangGhiSo DATE,                     
-    ChiSo INT,                           
-    DonGia DECIMAL(18, 2),               
-    ThanhTien DECIMAL(18, 2),           
+    MaPB NVARCHAR(10),
+    MaCongTo NVARCHAR(10),
+    ThangGhiSo DATE,
+    ChiSo INT NULL,
+    DonGia DECIMAL(18, 2) NULL,
+    ThanhTien DECIMAL(18, 2) NULL,
 
-    PRIMARY KEY (MaPB, MaCongTo, ThangGhiSo),  
-
+    PRIMARY KEY (MaPB, MaCongTo, ThangGhiSo),
     FOREIGN KEY (MaPB) REFERENCES tPBTDienNuoc(MaPT),
     FOREIGN KEY (MaCongTo, ThangGhiSo) REFERENCES tDienNuoc(MaCongTo, ThangGhiSo)
 );
