@@ -197,3 +197,29 @@ VALUES  ('001', 'NV001', '212126824', 'A1P01', '2022-09-15', '2025-01-24'),
 		('020', 'NV002', '200828032', 'A1P03', '2024-01-24', '2024-06-15'),
 		('002', 'NV002', '201595197', 'A1P03', '2021-09-15', '2022-01-24'),
 		('016', 'NV002', '220116929', 'A1P03', '2022-09-15', '2025-06-15'),
+
+		
+INSERT INTO tPTTThuePhong (MaPT, MaNV, MaSV, NgayLapPhieu, TongTien, TrangThai)
+VALUES 
+		('001', )
+
+
+INSERT INTO tPBTThuePhong (MaPB, MaHD, NgayLapPhieu, HanThanhToan, TongTien, TrangThai)
+VALUES 
+		('001', )
+
+INSERT INTO tDienNuoc (MaCongTo, ThangGhiSo, MaPhong, ChiSoDau, ChiSoCuoi)
+VALUES 
+		(),
+
+INSERT INTO tPTTDienNuoc (MaPT, MaNV, MaPhong, NgayLapPhieu, HanThanhToan, TongTien, TrangThai)
+VALUES 
+		(),
+
+INSERT INTO tPBTDienNuoc (MaPB, NgayLapPhieu, HanThanhToan, TongTien, TrangThai)
+VALUES 
+		(),
+
+INSERT INTO tCTPBTDienNuoc (MaPB, MaCongTo, ThangGhiSo, ChiSo, DonGia, ThanhTien)
+VALUES 
+		(),

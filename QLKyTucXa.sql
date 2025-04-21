@@ -64,9 +64,9 @@ CREATE TABLE tHopDong (
 CREATE TABLE tPBTThuePhong (
     MaPB NVARCHAR(10) PRIMARY KEY,
     MaHD NVARCHAR(10) NOT NULL,
-    TongTien DECIMAL(18, 2) NULL,
     NgayLapPhieu DATE NULL,
     HanThanhToan DATE NULL,
+	TongTien DECIMAL(18, 2) NULL,
     TrangThai BIT NULL,
 
     FOREIGN KEY (MaHD) REFERENCES tHopDong(MaHD)
