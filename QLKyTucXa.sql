@@ -34,7 +34,8 @@ CREATE TABLE tLoaiPhong (
     MaLoaiPhong NVARCHAR(10) PRIMARY KEY,
     TenLoaiPhong NVARCHAR(100) NOT NULL,
     Nam_Nu BIT NULL,
-    SoNguoi INT NULL
+    SoNguoi INT NULL,
+	DonGia DECIMAL(18, 2)
 );
 
 -- tPhong: OK
