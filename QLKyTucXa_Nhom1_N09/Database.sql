@@ -1,7 +1,4 @@
-﻿CREATE DATABASE QLKyTucXa
-USE QLKyTucXa
-
--- Bảng tSinhVien
+﻿-- Bảng tSinhVien
 CREATE TABLE tSinhVien (
     MaSV NVARCHAR(10) PRIMARY KEY,  
     HoTen NVARCHAR(100) NOT NULL,     

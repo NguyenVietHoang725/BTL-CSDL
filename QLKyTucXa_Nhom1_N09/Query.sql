@@ -1,4 +1,5 @@
 ﻿--- 02 lệnh gồm select có điều kiện trên một bảng
+
 --Liệt kê các sinh viên có giới tính nữ
 select *
 from tSinhVien
@@ -91,6 +92,7 @@ order by SL
 
 --- 02 câu lệnh gồm select có where, group by, having và truy vấn con
 --tính tổng tiền đã thanh toán của phòng có đủ số lượng sinh viên trong phòng
+
 select A.MaPhong, A.DaThanhToan
 from
 (select MaPhong, SUM(TongTien) as DaThanhToan
@@ -106,7 +108,7 @@ group by tPhong.MaPhong, SoNguoi
 having COUNT(MaSV) = SoNguoi) B on A.MaPhong = B.MaPhong
 
 
--- Số phòng theo loại phòng của sinh viên nam chưa đủ người
+--Loại phòng nam, chưa đủ người, tăng dần
 select TenLoaiPhong, count(MaPhong) as SL
 from tLoaiPhong
 inner join tPhong on tLoaiPhong.MaLoaiPhong = tPhong.MaLoaiPhong
@@ -132,14 +134,22 @@ from tSinhVien sv
 where sv.MaSV = '231230884')
 
 --thêm những phiếu báo điện nước vào phiếu thu nếu chưa có phiếu thu
-insert into tPTTDienNuoc(MaPT, NgayLapPhieu, TongTien, TrangThai)
-select pb.MaPB, pb.NgayLapPhieu, pb.TongTien, pb.TrangThai
+insert into tPTTDienNuoc(MaPT, NgayLapPhieu, HanThanhToan, TongTien, TrangThai)
+select pb.MaPB, pb.NgayLapPhieu, pb.HanThanhToan, pb.TongTien, pb.TrangThai
 from tPBTDienNuoc pb
 where not exists(
 select 1
 from tPTTDienNuoc pt
 where pb.MaPB = pt.MaPT)
 
+--sinh viên nữ chưa có hợp đồng
+select HoTen
+from tSinhVien
+where GioiTinh = 0 and not exists (
+select 1
+from tHopDong
+where tHopDong.MaSV = tSinhVien.MaSV
+)
 --- 02 câu lệnh update có điều kiện --thêm thông tin cho phòng mới
 
 --Cập nhật trạng thái phiếu thu tiền phòng đã thanh toán
@@ -162,7 +172,4 @@ where tHopDong.MaSV = tSinhVien.MaSV)
 
 --Xóa phiếu thu điện nước chưa thanh toán và đã quá hạn
 delete from tPTTDienNuoc
-where TrangThai = 0 and GETDATE() > (
-select HanThanhToan
-from tPBTDienNuoc
-where tPTTDienNuoc.MaPT = tPBTDienNuoc.MaPB)
+where TrangThai = 0 and HanThanhToan < GETDATE();
