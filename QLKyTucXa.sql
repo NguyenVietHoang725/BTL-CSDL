@@ -1,4 +1,5 @@
 ﻿-- tSinhVien: OK
+
 CREATE TABLE tSinhVien (
     MaSV NVARCHAR(10) PRIMARY KEY,  
     HoTen NVARCHAR(100) NOT NULL,     
@@ -101,7 +102,7 @@ CREATE TABLE tPTTDienNuoc (
 
 -- tPBTDienNuoc
 CREATE TABLE tPBTDienNuoc (
-    MaPT NVARCHAR(10) PRIMARY KEY,
+    MaPB NVARCHAR(10) PRIMARY KEY,
     NgayLapPhieu DATE NULL,
     HanThanhToan DATE NULL,
     TongTien DECIMAL(18, 2) NULL,
@@ -118,6 +119,6 @@ CREATE TABLE tCTPBTDienNuoc (
     ThanhTien DECIMAL(18, 2) NULL,
 
     PRIMARY KEY (MaPB, MaCongTo, ThangGhiSo),
-    FOREIGN KEY (MaPB) REFERENCES tPBTDienNuoc(MaPT),
+    FOREIGN KEY (MaPB) REFERENCES tPBTDienNuoc(MaPB),
     FOREIGN KEY (MaCongTo, ThangGhiSo) REFERENCES tDienNuoc(MaCongTo, ThangGhiSo)
 );

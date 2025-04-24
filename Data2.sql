@@ -26,7 +26,7 @@ VALUES  ('A1P01', N'P101', 'LP40'),
 		('A3P03', N'P103', 'LP60'),
 		('A3P07', N'P201', 'LP61'),
 		('A3P08', N'P202', 'LP61'),
-		('A3P09', N'P203', 'LP61'),
+		('A3P09', N'P203', 'LP61');
 
 INSERT INTO tSinhVien (MaSV, HoTen, NgaySinh, GioiTinh, SDT)
 VALUES  ('230870261', N'Vũ Bất Bình', '2005-11-18', '1', '0972936189'), 
@@ -62,14 +62,14 @@ VALUES  ('230870261', N'Vũ Bất Bình', '2005-11-18', '1', '0972936189'),
 		('243940766', N'Hứa Quang Hán', '2006-04-02', '1', '0376054504'),
 		('243681310', N'Nghiêm Vũ Hoàng Long', '2006-05-10', '1', '0844578848'),
 		('223511979', N'Trương Tuấn Tú', '2004-02-15', '1', '0371614794'),
-		('242611945', N'Đặng Tiến Hoàng', '2006-12-20', '1', '0529407691'),
+		('242611945', N'Đặng Tiến Hoàng', '2006-12-20', '1', '0529407691');
 
 INSERT INTO tNhanVien (MaNV, HoTen, NgaySinh, GioiTinh, ChucVu)
 VALUES  ('KT001', N'Phan Đức Bội', '1973-11-30', 1, N'Quản lý Kế toán'),
 		('KT002', N'Mai Đức Anh', '1980-09-10', 1, N'Kế toán'),
 		('KT003', N'Hà Thị Lan', '1992-11-12', 0, N'Kế toán'),
 
-		('NV001', N'Nguyễn Thị Hiền', '1998-07-20', 0, N'Quản lý Nhân viên');
+		('NV001', N'Nguyễn Thị Hiền', '1998-07-20', 0, N'Quản lý Nhân viên'),
 		('NV002', N'Trần Thị Mai', '1995-03-22', 0, N'Nhân viên'),
 		('NV003', N'Phan Văn Đức', '1989-03-03', 1, N'Nhân viên'),
 		('NV004', N'Hà Thị Minh', '1996-07-27', 0, N'Nhân viên'),
@@ -77,7 +77,7 @@ VALUES  ('KT001', N'Phan Đức Bội', '1973-11-30', 1, N'Quản lý Kế toán
 		
 		('BV001', N'Ngô Quốc Huy', '1983-04-20', 1, N'Quản lý Bảo vệ'),
 		('BV002', N'Nguyễn Thị Linh', '1991-09-18', 0, N'Bảo vệ'),
-		('BV003', N'Lê Thị Hồng', '1993-02-14', 0, N'Bảo vệ'),
+		('BV003', N'Lê Thị Hồng', '1993-02-14', 0, N'Bảo vệ');
 
 INSERT INTO tHopDong (MaHD, MaNV, MaSV, MaPhong, NgayBatDau, NgayKetThuc)
 VALUES
@@ -139,15 +139,15 @@ VALUES
 		('010', 'KT002', '212126824', '2024-12-21', 1600000 / 4, 1), -- A1P01: LP40 (400k)
 		('011', 'KT002', '231698227', '2025-01-31', 1600000 / 4, 0), -- A1P02: LP40 (400k)
 
-		('014', 'KT002', '200920608', '2024-10-10', 2400000 / 8, 1), -- A2P06: LP81 (300k)
+		('014', 'KT002', '200920608', '2024-10-10', 2400000 / 8, 1); -- A2P06: LP81 (300k)
 
 INSERT INTO tDienNuoc (MaCongTo, ThangGhiSo, MaPhong, ChiSoDau, ChiSoCuoi)
 VALUES
-		('E001', NULL, 'A1P01', NULL, NULL), ('W001', NULL, 'A1P01', NULL, NULL),
-		('E002', NULL, 'A1P02', NULL, NULL), ('W002', NULL, 'A1P02', NULL, NULL),
-		('E003', NULL, 'A1P03', NULL, NULL), ('W003', NULL, 'A1P03', NULL, NULL),
-		('E004', NULL, 'A2P01', NULL, NULL), ('W004', NULL, 'A2P01', NULL, NULL),
-		('E005', NULL, 'A2P02', NULL, NULL), ('W005', NULL, 'A2P02', NULL, NULL),
+		('E001', '2025-04-01', 'A1P01', 0, 0), ('W001', '2025-04-01', 'A1P01', 0, 0),
+		('E002', '2025-04-01', 'A1P02', 0, 0), ('W002', '2025-04-01', 'A1P02', 0, 0),
+		('E003', '2025-04-01', 'A1P03', 0, 0), ('W003', '2025-04-01', 'A1P03', 0, 0),
+		('E004', '2025-04-01', 'A2P01', 0, 0), ('W004', '2025-04-01', 'A2P01', 0, 0),
+		('E005', '2025-04-01', 'A2P02', 0, 0), ('W005', '2025-04-01', 'A2P02', 0, 0),
     
 		-- A2P06: có sử dụng, đã có số liệu
 		('E006', '2024-09-01', 'A2P06', 100, 115), ('W006', '2024-09-01', 'A2P06', 50, 59),
@@ -155,15 +155,16 @@ VALUES
 		('E006', '2024-11-01', 'A2P06', 132, 150), ('W006', '2024-11-01', 'A2P06', 69, 80),
 		('E006', '2025-01-01', 'A2P06', 150, 168), ('W006', '2025-01-01', 'A2P06', 80, 92),
 
-		('E007', NULL, 'A2P07', NULL, NULL), ('W007', NULL, 'A2P07', NULL, NULL),
-		('E008', NULL, 'A2P11', NULL, NULL), ('W008', NULL, 'A2P11', NULL, NULL),
-		('E009', NULL, 'A2P12', NULL, NULL), ('W009', NULL, 'A2P12', NULL, NULL),
-		('E010', NULL, 'A3P01', NULL, NULL), ('W010', NULL, 'A3P01', NULL, NULL),
-		('E011', NULL, 'A3P02', NULL, NULL), ('W011', NULL, 'A3P02', NULL, NULL),
-		('E012', NULL, 'A3P03', NULL, NULL), ('W012', NULL, 'A3P03', NULL, NULL),
-		('E013', NULL, 'A3P07', NULL, NULL), ('W013', NULL, 'A3P07', NULL, NULL),
-		('E014', NULL, 'A3P08', NULL, NULL), ('W014', NULL, 'A3P08', NULL, NULL),
-		('E015', NULL, 'A3P09', NULL, NULL), ('W015', NULL, 'A3P09', NULL, NULL);
+		('E007', '2025-04-01', 'A2P07', 0, 0), ('W007', '2025-04-01', 'A2P07', 0, 0),
+		('E008', '2025-04-01', 'A2P11', 0, 0), ('W008', '2025-04-01', 'A2P11', 0, 0),
+		('E009', '2025-04-01', 'A2P12', 0, 0), ('W009', '2025-04-01', 'A2P12', 0, 0),
+		('E010', '2025-04-01', 'A3P01', 0, 0), ('W010', '2025-04-01', 'A3P01', 0, 0),
+		('E011', '2025-04-01', 'A3P02', 0, 0), ('W011', '2025-04-01', 'A3P02', 0, 0),
+		('E012', '2025-04-01', 'A3P03', 0, 0), ('W012', '2025-04-01', 'A3P03', 0, 0),
+		('E013', '2025-04-01', 'A3P07', 0, 0), ('W013', '2025-04-01', 'A3P07', 0, 0),
+		('E014', '2025-04-01', 'A3P08', 0, 0), ('W014', '2025-04-01', 'A3P08', 0, 0),
+		('E015', '2025-04-01', 'A3P09', 0, 0), ('W015', '2025-04-01', 'A3P09', 0, 0);
+
 
 INSERT INTO tPTTDienNuoc (MaPT, MaNV, MaPhong, NgayLapPhieu, HanThanhToan, TongTien, TrangThai)
 VALUES 
