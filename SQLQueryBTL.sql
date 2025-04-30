@@ -166,3 +166,57 @@ where TrangThai = 0 and GETDATE() > (
 select HanThanhToan
 from tPBTDienNuoc
 where tPTTDienNuoc.MaPT = tPBTDienNuoc.MaPB)
+
+-- Tính doanh thu của kí túc xá theo từng kì
+select tPTTThuePhong.Namhoc, tPTTThuePhong.Ki, SUM(tPTTDienNuoc.TongTien) + SUM(tPTTThuePhong.TongTien) as DoanhThu
+from tPTTDienNuoc
+inner join tPTTThuePhong on tPTTThuePhong.MaNV = tPTTDienNuoc.MaNV
+group by tPTTThuePhong.Namhoc, tPTTThuePhong.Ki
+
+select *
+from tPTTDienNuoc
+inner join tNhanVien on tPTTDienNuoc.MaNV = tNhanVien.MaNV
+inner join tPTTThuePhong on tPTTThuePhong.MaNV = tNhanVien.MaNV
+
+select *
+from tPTTDienNuoc
+inner join tPTTThuePhong on tPTTThuePhong.MaNV = tPTTDienNuoc.MaNV
+
+select 
+    tPTTThuePhong.Namhoc, 
+    tPTTThuePhong.Ki, 
+    SUM(tPTTDienNuoc.TongTien) + SUM(tPTTThuePhong.TongTien) as DoanhThu
+from 
+    tPTTDienNuoc
+inner join 
+    tNhanVien on tPTTDienNuoc.MaNV = tNhanVien.MaNV
+inner join 
+    tPTTThuePhong on tPTTThuePhong.MaNV = tNhanVien.MaNV
+group by 
+    tPTTThuePhong.Namhoc, tPTTThuePhong.Ki;
+
+
+alter table tPTTThuePhong
+add Ki int
+
+alter table tPTTThuePhong
+add Namhoc nvarchar(15)
+
+alter table tPTTThuePhong
+alter column Namhoc nvarchar(15);
+
+update tPTTThuePhong
+set Ki =
+(case when
+ MONTH(NgayLapPhieu) in (8, 9, 10, 11, 12, 1) then 1
+ else 2
+ end)
+
+update tPTTThuePhong
+set Namhoc = 
+ (case 
+        when MONTH(NgayLapPhieu) in (8, 9, 10, 11, 12) then 
+            CONCAT(YEAR(NgayLapPhieu), '-', YEAR(NgayLapPhieu) + 1) 
+        else 
+            CONCAT(YEAR(NgayLapPhieu) - 1, '-', YEAR(NgayLapPhieu)) 
+    end)
